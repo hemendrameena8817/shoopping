@@ -1,0 +1,44 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Buy Now{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+    <div class="row">
+        <!-- Sidebar for Mobile Categories -->
+        <div class="col-sm-3">
+            <div class="list-group">
+                <a href="{% url 'mobile' %}" class="list-group-item list-group-item-action active" aria-current="true">
+                    All Mobiles
+                </a>
+                <a href="{% url 'mobiledata' 'redami' %}" class="list-group-item list-group-item-action">Redami</a>
+                <a href="{% url 'mobiledata' 'poco' %}" class="list-group-item list-group-item-action">Poco</a>
+            </div>
+        </div>
+        
+        <!-- Product List -->
+        <div class="col-sm-9">
+            <div class="row">
+                {% for product in mobiles %}
+                <div class="col-md-4 col-sm-6 text-center mb-3">
+                    <a href="{% url 'product-detail' product.id %}" class="btn btn-light shadow-sm text-decoration-none">
+                        <div class="card h-100">
+                            <img src="{{product.product_image.url}}" alt="{{product.title}}" class="card-img-top" style="height: 300px; object-fit: contain;">
+                            <div class="card-body">
+                                <h5 class="card-title">{{product.title}}</h5>
+                              <p class="card-text text-muted">
+                                    <span class="text-danger fw-bold">{{product.discounted_price}}</span>
+                                    <small class="text-decoration-line-through text-muted">{{product.silling_price}}</small>
+                                </p>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% empty %}
+                <p>No mobiles available</p>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock main-content %}

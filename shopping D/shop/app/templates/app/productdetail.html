@@ -1,0 +1,54 @@
+{% extends 'app/base.html' %}
+{% load static %}
+{% block title %}Product Detail{% endblock title %}
+{% block main-content %}
+<div class="container my-5">
+    <div class="row">
+      <!-- Product Image -->
+      <div class="col-sm-6 text-center align-self-center">
+        <img src="{{product.product_image.url}}" alt="{{product.title}}" class="img-fluid img-thumbnail shadow-lg">
+      </div>
+      
+      <!-- Product Information -->
+      <div class="col-sm-5 offset-sm-1">
+        <h2 class="mb-3">{{ product.title }}</h2>
+        <hr>
+        <p>{{ product.description }}</p>
+  
+        <!-- Pricing -->
+        <h4>
+          Rs. {{ product.discounted_price }} 
+          <small class="fw-light text-decoration-line-through text-muted">{{ product.selling_price }}</small>
+        </h4>
+  
+        <!-- Quantity and Buttons -->
+        <div class="my-3">
+          <label for="quantity" class="form-label">Quantity:</label>
+          <input type="number" id="quantity" name="quantity" min="1" max="10" value="1" class="form-control w-25 d-inline">
+        </div>
+        <div class="mb-4">
+          <a href="{% url 'add-to-cart' %}" class="btn btn-primary shadow px-5 py-2">Add to Cart</a>
+          <a href="{% url 'buy-now' %}" class="btn btn-danger shadow px-5 py-2 ms-4">Buy Now</a>
+        </div>
+  
+        <!-- Available Offers -->
+        <h5 class="mt-5">Available Offers</h5>
+        <ul class="list-unstyled">
+          <li><i class="fas fa-tag text-success"></i> Bank Offer: 5% Unlimited Cashback on Flipkart Axis Bank Credit Card</li>
+          <li><i class="fas fa-tag text-success"></i> Special Price: Get extra ₹3000 off (price inclusive of discount)</li>
+          <li><i class="fas fa-tag text-success"></i> No cost EMI: ₹1,667/month. Standard EMI also available</li>
+          <li><i class="fas fa-gift text-warning"></i> Partner Offer: ₹2000 Flipkart Gift Card on Every 1000th Transaction with a new Visa Debit/Credit Card</li>
+        </ul>
+  
+        <!-- Share Section -->
+        <div class="mt-5">
+          <h6>Share this product:</h6>
+          <a href="#" class="btn btn-outline-secondary"><i class="fab fa-facebook-f"></i> Facebook</a>
+          <a href="#" class="btn btn-outline-secondary ms-2"><i class="fab fa-twitter"></i> Twitter</a>
+          <a href="#" class="btn btn-outline-secondary ms-2"><i class="fab fa-whatsapp"></i> WhatsApp</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+{% endblock main-content %}
